@@ -11,6 +11,7 @@ var audioPlayer: AVAudioPlayer?
 
 func playSound(sound: String, type: String) {
   if let path = Bundle.main.path(forResource: sound, ofType: type) {
+      return
     do {
       audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
       audioPlayer?.play()

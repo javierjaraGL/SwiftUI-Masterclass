@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct BrandGridView: View {
   // MARK: - PROPERTY
   
