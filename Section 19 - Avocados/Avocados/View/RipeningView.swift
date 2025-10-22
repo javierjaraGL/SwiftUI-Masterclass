@@ -99,7 +99,7 @@ struct RipeningView: View {
       .multilineTextAlignment(.center)
       .padding(.horizontal)
       .frame(width: 260, height: 485, alignment: .center)
-      .background(LinearGradient(gradient: Gradient(colors: [Color("ColorGreenLight"), Color("ColorGreenMedium")]), startPoint: .top, endPoint: .bottom))
+      .background(LinearGradient(gradient: Gradient(colors: [Color.colorGreenLight, Color("ColorGreenMedium")]), startPoint: .top, endPoint: .bottom))
       .cornerRadius(20)
     }
     .edgesIgnoringSafeArea(.all)

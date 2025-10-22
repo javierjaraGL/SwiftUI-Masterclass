@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InfoView: View {
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   
   var body: some View {
     VStack(alignment: .center, spacing: 10) {
@@ -20,7 +20,7 @@ struct InfoView: View {
         Section(header: Text("About the application")) {
           FormRowView(firstItem: "Application", secondItem: "Slot Machine")
           FormRowView(firstItem: "Platforms", secondItem: "iPhone, iPad, Mac")
-          FormRowView(firstItem: "Developer", secondItem: "John / Jane")
+          FormRowView(firstItem: "Developer", secondItem: "Javier / Jara")
           FormRowView(firstItem: "Designer", secondItem: "Robert Petras")
           FormRowView(firstItem: "Music", secondItem: "Dan Lebowitz")
           FormRowView(firstItem: "Website", secondItem: "https://credo.academy")
@@ -34,7 +34,7 @@ struct InfoView: View {
     .overlay(
       Button(action: {
         audioPlayer?.stop()
-        self.presentationMode.wrappedValue.dismiss()
+          dismiss()
       }) {
         Image(systemName: "xmark.circle")
           .font(.title)
