@@ -30,11 +30,34 @@ struct NavigationBarDetailView: View {
       
       Spacer()
       
-      Button(action: {}, label: {
-        Image(systemName: "cart")
-          .font(.title)
-          .foregroundColor(.white)
+      Button(action: {
+        withAnimation(.easeIn) {
+          feedback.impactOccurred()
+          shop.showingCart = true
+        }
+      }, label: {
+        ZStack(alignment: .topTrailing) {
+          Image(systemName: "cart")
+            .font(.title)
+            .foregroundColor(.white)
+          
+          // Badge
+          if shop.cart.products.count > 0 {
+            Text("\(shop.cart.products.count)")
+              .font(.caption2)
+              .fontWeight(.bold)
+              .foregroundColor(.white)
+              .frame(minWidth: 16, minHeight: 16)
+              .background(Color.red)
+              .clipShape(Circle())
+              .offset(x: 8, y: -8)
+          }
+        } //: ZSTACK
       })
+      .sheet(isPresented: $shop.showingCart) {
+        CartView()
+          .environmentObject(shop)
+      }
     } //: HSTACK
   }
 }

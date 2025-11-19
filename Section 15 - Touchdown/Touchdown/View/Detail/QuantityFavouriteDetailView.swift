@@ -10,14 +10,14 @@ import SwiftUI
 struct QuantityFavouriteDetailView: View {
   // MARK: - PROPERTY
   
-  @State private var counter: Int = 0
+  @State private var counter: Int = 1
   
   // MARK: - BODY
   
   var body: some View {
     HStack(alignment: .center, spacing: 6, content: {
       Button(action: {
-        if counter > 0 {
+        if counter > 1 {
           feedback.impactOccurred()
           counter -= 1
         }

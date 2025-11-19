@@ -17,6 +17,11 @@ struct AddToCartDetailView: View {
   var body: some View {
     Button(action: {
       feedback.impactOccurred()
+      
+      // Add product to cart
+      if let product = shop.selectedProduct {
+        shop.cart.products.append(product)
+      }
     }, label: {
       Spacer()
       Text("Add to cart".uppercased())

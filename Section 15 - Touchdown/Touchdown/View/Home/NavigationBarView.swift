@@ -10,6 +10,7 @@ import SwiftUI
 struct NavigationBarView: View {
   // MARK: - PROPERTY
   
+  @EnvironmentObject var shop: Shop
   @State private var isAnimated: Bool = false
   
   // MARK: - BODY
@@ -35,21 +36,36 @@ struct NavigationBarView: View {
       
       Spacer()
       
-      Button(action: {}, label: {
-        ZStack {
+      Button(action: {
+        feedback.impactOccurred()
+        shop.showingCart = true
+      }, label: {
+        ZStack(alignment: .topTrailing) {
           Image(systemName: "cart")
             .font(.title)
             .foregroundColor(.black)
           
-          Circle()
-            .fill(Color.red)
-            .frame(width: 14, height: 14, alignment: .center)
-            .offset(x: 13, y: -10)
-        }
+          // Badge
+          if shop.cart.products.count > 0 {
+            Text("\(shop.cart.products.count)")
+              .font(.caption2)
+              .fontWeight(.bold)
+              .foregroundColor(.white)
+              .frame(minWidth: 16, minHeight: 16)
+              .background(Color.red)
+              .clipShape(Circle())
+              .offset(x: 8, y: -8)
+          }
+        } //: ZSTACK
       }) //: BUTTON
+      .sheet(isPresented: $shop.showingCart) {
+        CartView()
+          .environmentObject(shop)
+      }
     } //: HSTACK
   }
 }
 #Preview {
     NavigationBarView()
+        .environmentObject(Shop())
 }
